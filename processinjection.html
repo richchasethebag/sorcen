@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>sorcen</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://kit.fontawesome.com/97b21a4e7f.js" crossorigin="anonymous"></script>
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+
+<!--logo-->
+  <div class="logo">
+    <a href="index.html">
+        <img src="assets/logo4.png" alt="Logo">
+    </a>
+  </div>
+<!--logo-->
+
+<!--Content-->
+<div class="pageheader"></div>
+<div class="panel" id="main">
+    <div class="content">
+        <article class="post h-entry">
+            <header class="post-header">
+                <h1 class="post-title p-name" id="title" >Shellcode Injection...what's that?</h1>
+            </header>
+            <div class="containbox">
+                <span class="time">
+                    <i class="fas fa-user-edit"></i>
+                    by <span class="hov p-author h-card">Sorcen</span>
+                </span>
+                <br/>
+
+                <a class="u-url u-uid" href></a>
+                <!-- <br/> <span class="categories"> &raquo; infosec, blog </span> -->
+            </div>
+        <hr/>
+        <div class="post-content e-content">
+            <p>
+                This is going to be a <em style="color: #e3a1a1;">fun</em> one...trust me. It might take a little bit to get through <em style="color: #e3a1a1;">everything</em> but I promise it's pretty <em style="color: #e3a1a1;">interesting</em> once we get it going. Today we are going to be, in a very <em style="color: #e3a1a1;">blunt</em> explanation, injecting shellcode inside of a <em style="color: #e3a1a1;">remote</em> process. This is going to allow us to have <strong>FULL</strong> access to the <em style="color: #e3a1a1;">victims</em> computer (an educational victim).
+            <p>
+                I <em style="color: #e3a1a1;">know</em> usually we write our programs in <em style="color: #e3a1a1;">python</em> but today we are going to have a little <em style="color: #e3a1a1;">fun</em> with <strong>C</strong>!!! This is because we are <em style="color: #e3a1a1;">going</em> to be using the windows api to do some fun stuff. Let's get <em style="color: #e3a1a1;">started</em>.
+            <p>
+                First thing we are <em style="color: #e3a1a1;">going</em> to have to do when opening a C file is just get our <em style="color: #e3a1a1;">headers</em> out of the way. We are going to add some <em style="color: #e3a1a1;">standard</em> headers like stdio.h which is our regular input/output <em style="color: #e3a1a1;">header</em> and let's not forget our windows.h which is going to <em style="color: #e3a1a1;">allow</em> us to interact with the windows <em style="color: #e3a1a1;">api</em>.
+
+                <pre>
+                    <code class="hljs language-c">
+    #include&nbsp;&lt;stdio.h&gt;&nbsp;
+    #include&nbsp;&lt;Windows.h&gt;&nbsp;
+                    </code>
+                </pre>
+            <p>
+                Alrighty we are <em style="color: #e3a1a1;">done</em>!...jk let's continue. After our headers we are <em style="color: #e3a1a1;">going</em> to need our main function and <em style="color: #e3a1a1;">begin</em> to add some variables to it. We define <em style="color: #e3a1a1;">hProcess</em> to have a type of <em style="color: #e3a1a1;">HANDLE</em>.
+                <pre>
+                    <code class="hljs language-c">
+    #include&nbsp;&lt;stdio.h&gt;&nbsp;
+    #include&nbsp;&lt;Windows.h&gt;&nbsp;
+    
+    int&nbsp;main()
+    {
+        HANDLE&nbsp;hProcess;
+    
+    }
+                    </code>
+                </pre>
+            <p>
+                Keep in mind that a <em style="color: #e3a1a1;">HANDLE</em> type is a resource that is used when an <em style="color: #e3a1a1;">application</em> references blocks of memory that are managed by a <em style="color: #e3a1a1;">remote</em> system. In our example we are going to use it to <em style="color: #e3a1a1;">store</em> the remote process's handle. I know it <em style="color: #e3a1a1;">sounds</em> a litte confusing right now but let's <em style="color: #e3a1a1;">move</em> forward so it makes a bit more <em style="color: #e3a1a1;">sense</em>.
+            <p>
+                We need to set hProcess to Microsoft's <em style="color: #e3a1a1;">OpenProcess</em> function. Let's take a moment of <em style="color: #e3a1a1;">silence</em> for how beautiful Microsoft's documentation is because we can see <em style="color: #e3a1a1;">exactly</em> what parameters these functions take. For example <em style="color: #e3a1a1;">OpenProcesss</em> takes the following:
+                <pre>
+                    <code class="hljs language-c">
+    HANDLE&nbsp;OpenProcess(
+        &nbsp;&nbsp;[in]&nbsp;DWORD&nbsp;dwDesiredAccess,
+        &nbsp;&nbsp;[in]&nbsp;BOOL&nbsp;&nbsp;bInheritHandle,
+        &nbsp;&nbsp;[in]&nbsp;DWORD&nbsp;dwProcessId
+        );
+                    </code>
+                </pre>
+            <p>
+                And yes visual studio is <em style="color: #e3a1a1;">going</em> to let us know the same thing but the <em style="color: #e3a1a1;">documentation</em> allows us to read into detail what each <em style="color: #e3a1a1;">parameter</em> is and is used for. You can check out the documentation <a href="https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-openprocess" style="color:aquamarine">here</a> if you want to see what I am <em style="color: #e3a1a1;">going</em> to be referring to.
+            <p>
+                I'm not going to get into super <em style="color: #e3a1a1;">heavy</em> details on every function, please <em style="color: #e3a1a1;">refer</em> to the documentation if you have more questions. First <em style="color: #e3a1a1;">we</em> are going to run is PROCESS_ALL_ACCESS followed with <em style="color: #e3a1a1;">TRUE</em> as the second parameter is a bool value and the third <em style="color: #e3a1a1;">we</em> are actually going to set it to X for now as a <em style="color: #e3a1a1;">filler</em> but we will change that to the actual ProcessId later on. We <em style="color: #e3a1a1;">also</em> are going to set a variable "exec_mem" to the VirtualAllocEx() <em style="color: #e3a1a1;">function</em>, you can reference that <a href="https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualallocex" style="color:aquamarine">here</a>.
+
+
+
+
+                <div class="logger-container">
+                    <img src="assets\" alt="">
+                </div>
+            
+                <em style="color: #e3a1a1;">computer</em>
+
+
+
+
+
+                
+
+        </div>
+    </article>
+<hr/>
+<br/>
+ <center>
+    <a href="disclaimer.html ">Disclaimer</a> 
+</center> 
+<br/>
+<!--Content-->
+
+<!--Code snippet Highlight.JS-->
+<link href="https://unpkg.com/highlightjs-badge/highlightjs/styles/ir-black.css" rel="stylesheet">
+<script src="https://unpkg.com/highlightjs-badge/highlightjs/highlight.pack.js"></script>
+<script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+<script>hljs.highlightAll();</script>
+<script>
+    setTimeout(function () {
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+        window.highlightJsBadge(options);
+    },10);
+</script>
+<!--Code snippet Highlight.JS-->
+</body>
+<script src="app.js"></script>
+</html>

