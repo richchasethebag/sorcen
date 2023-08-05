@@ -27,7 +27,7 @@
     <div class="content">
         <article class="post h-entry">
             <header class="post-header">
-                <h1 class="post-title p-name" id="title" >Hmmm...I smell something</h1>
+                <h1 class="post-title p-name" id="title" >Hmmm...I smell something fishy</h1>
             </header>
             <div class="containbox">
                 <span class="time">
@@ -42,22 +42,47 @@
         <hr/>
         <div class="post-content e-content">
                 <p>
-                    What <em style="color: #e3a1a1;">happens</em> when you are using the <em style="color: #e3a1a1;">internet</em>? Well in a nutshell you are <em style="color: #e3a1a1;">constantly</em> in a state of sending and receiving <em style="color: #e3a1a1;">data</em> to the web servers. This is what <em style="color: #e3a1a1;">wllows</em> you to communciate with the browser to <em style="color: #e3a1a1;">click</em> on things or send messages. The <em style="color: #e3a1a1;">issue</em> here is that these "<em style="color: #e3a1a1;">data packets</em>" are literally sent across your <em style="color: #e3a1a1;">network</em> to the receiving servers. With that being said <em style="color: #e3a1a1;">what</em> would happen if someone wanted to know <em style="color: #e3a1a1;">exactly</em> what you were doing on your <em style="color: #e3a1a1;">computer</em>? What if they were able to look at your <em style="color: #e3a1a1;">data</em> packets as you are <em style="color: #e3a1a1;">sending/receiving</em> them? Well...this is something called a <em style="color: #e3a1a1;">packet sniffer</em> attack or a "<em style="color: #e3a1a1;">man in the middle</em>" attack. It's actually pretty <em style="color: #e3a1a1;">interesting</em>, let's dive in.
+                    What <em style="color: #e3a1a1;">happens</em> when you are using the <em style="color: #e3a1a1;">internet</em>? Well in a nutshell you are <em style="color: #e3a1a1;">constantly</em> in a state of sending and receiving <em style="color: #e3a1a1;">data</em> to the web servers. This is what <em style="color: #e3a1a1;">allows</em> you to communicate with the browser to <em style="color: #e3a1a1;">click</em> on things or send messages. The <em style="color: #e3a1a1;">issue</em> here is that these "<em style="color: #e3a1a1;">data packets</em>" are literally sent across your <em style="color: #e3a1a1;">network</em> to the receiving servers. With that being said <em style="color: #e3a1a1;">what</em> would happen if someone wanted to know <em style="color: #e3a1a1;">exactly</em> what you were doing on your <em style="color: #e3a1a1;">computer</em>? What if they were able to look at your <em style="color: #e3a1a1;">data</em> packets as you are <em style="color: #e3a1a1;">sending/receiving</em> them? Well...this is something called a <em style="color: #e3a1a1;">packet sniffer</em> attack or a "<em style="color: #e3a1a1;">man in the middle</em>" attack. It's actually pretty <em style="color: #e3a1a1;">interesting</em>, let's dive in.
                 <p>
-                    We are going to be using a program called Wireshark in our Kali machine for todays example.
+                    Today's meal will consist of <em style="color: #e3a1a1;">ARP poisoning/spoofing</em> with a side of packet <em style="color: #e3a1a1;">sniffing</em>. There are a few <em style="color: #e3a1a1;">programs</em> that we are going to be using that we haven't <em style="color: #e3a1a1;">touched</em> on before. One being <em style="color: #e3a1a1;">wireshark</em> which is going to allow us to <em style="color: #e3a1a1;">capture</em> packets from a network and read through them. We will also be using <em style="color: #e3a1a1;">ettercap</em> to be like a robin to our <em style="color: #e3a1a1;">wireshark</em>-batman, it will help us out in <em style="color: #e3a1a1;">supporting</em> our "man in the middle" attack.
+                <p>
+                    Before we continue I should probably <em style="color: #e3a1a1;">explain</em> a little more on how this <em style="color: #e3a1a1;">works</em> with a few visuals to make it more <em style="color: #e3a1a1;">simple</em> to understand. 
+                <div class="logger-container">
+                    <img src="assets/arpdiagram.png" alt="">
+                </div>
+                <p>
+                    You can see from the <em style="color: #e3a1a1;">diagram</em> above that the main idea of the <em style="color: #e3a1a1;">ARP poisoning/spoofing</em> gets across pretty simply. We are going to use <em style="color: #e3a1a1;">simple</em> terms to make sure everyone can keep <em style="color: #e3a1a1;">track</em> of what we are talking about. Your <em style="color: #e3a1a1;">gateway</em> (router/modem/switch) is how you are able to <em style="color: #e3a1a1;">communicate</em> with the internet. Whenever you are attempting to <em style="color: #e3a1a1;">access</em> some site on the internet you are making a <em style="color: #e3a1a1;">request</em> to access the site. You send a "<em style="color: #e3a1a1;">request</em>" to your gateway (router/modem/switch) to <em style="color: #e3a1a1;">ask</em> the site if you can access it. The site then <em style="color: #e3a1a1;">responds</em> back to the gateway and will either say <em style="color: #e3a1a1;">yes/no</em>. Then your <em style="color: #e3a1a1;">gateway</em> will send you back the <em style="color: #e3a1a1;">response</em> that the site gave.
+                <p>
+                    Here is where the "man in the middle" comes from. As you can see from the diagram the bad actor can use a program like wireshark and ettercap to see those requests that you are sending to your gateway and equally see what your access point is sending back to you...privacy just went right out the window. So you're saying that a hacker can see everything that im doi...<strong>YES</strong>
+                <p>
+                    Let's crack open ETTERCAP!
+                <div class="logger-container">
+                    <img src="assets/ettercap.png" alt="">
+                </div>
 
+                <p>
+                    Nice we got ettercap running so the first thing ettercap needs is going to be the 2 targets that the ARP poisoning shall attack...soooo let's do that. For demonstration purposes we are going to have ettercap send out a bunch of ARP scanning on the local subnet so we could easily find our hosts that we are going to connect to. In a production environment running a real pen test you probably would not want to notify the entire network that you are sending ARP scans, but like I said this is for demo purposes! 
+                <p>
+                    Ettercap was able to find 3 hosts on our network so let's set the 2 targets.
 
+                <div class="logger-container">
+                    <img src="assets/ettercaphostlist.png" alt="">
+                </div>
+                <p>
+                    We are going to set a Virtual Windows machine as the first target and our Kali machine as our second...let the poisoning being. We can clearly see that once we boot up wireshark on our Kali machine that the ARP attacks are visible. 
+                <div class="logger-container">
+                    <img src="assets/wiresharkarp.png" alt="">
+                </div>
+                <p>
+                    Okay so we are now sniffing into the packets that our windows machine is sending/receiving. The windows machine thinks that our Kali machine it the gateway, while the gateway also thinks that our Kali machine is the windows machine...muhahaha. Let's see what wire shark shows if we run a simple ping to google from our windows machine.
+                <div class="logger-container">
+                    <img src="assets/wiresharkping.png" alt="">
+                </div>
+                <p>
+                    WOAAAA. Wireshark is able to see exactly what my windows machine is pinging! This is awesome (and kinda scary). We don't have to worry too much as all of this is TLS encrypted so an attacker would need to go through a few more steps to get the plaintext, but the good news is we were able to give a good example of how a ARP poisoning attack would work. Maybe next time we can take it a step further to decrypt the packets!
 
-                <pre>
-                    <code class="language-python">
-    from&nbsp;pynput&nbsp;import&nbsp;keyboard
-
-    if&nbsp;__name__&nbsp;==&nbsp;&quot;__main__&quot;:
-    &nbsp;&nbsp;&nbsp;&nbsp;listener&nbsp;=&nbsp;keyboard.Listener(on_press=keyPressed)
-                    </code>
-                </pre>
-
-                <em style="color: #e3a1a1;">keyPressed</em>
+                <p>
+                    <em>P.S. The following are protocols that are affected by packet sniffing attacks and can be viewed in plaintext with no decryption HTTP,SMTP,NNTP,POP,FTP,INAO,TELNET, alright cya next time.</em>
         </div>
     </article>
 <hr/>
