@@ -43,11 +43,11 @@
         <hr/>
         <div class="post-content e-content">
             <p>
-                This is going to be a <em style="color: #e3a1a1;">fun</em> one...trust me. It might take a little bit to get through <em style="color: #e3a1a1;">everything</em> but I promise it's pretty <em style="color: #e3a1a1;">interesting</em> once we get it going. Today we are going to be, in a very <em style="color: #e3a1a1;">blunt</em> explanation, injecting shellcode inside of a <em style="color: #e3a1a1;">remote</em> process. This is going to allow us to have <strong>FULL</strong> access to the <em style="color: #e3a1a1;">victims</em> computer (an educational victim).
+                This is going to be a <em >fun</em> one...trust me. It might take a little bit to get through <em >everything</em> but I promise it's pretty <em >interesting</em> once we get it going. Today we are going to be, in a very <em >blunt</em> explanation, injecting shellcode inside of a <em >remote</em> process. This is going to allow us to have <strong>FULL</strong> access to the <em >victims</em> computer (an educational victim).
             <p>
-                I <em style="color: #e3a1a1;">know</em> usually we write our programs in <em style="color: #e3a1a1;">python</em> but today we are going to have a little <em style="color: #e3a1a1;">fun</em> with <strong>C</strong>!!! This is because we are <em style="color: #e3a1a1;">going</em> to be using the windows api to do some fun stuff. Let's get <em style="color: #e3a1a1;">started</em>.
+                I <em >know</em> usually we write our programs in <em >python</em> but today we are going to have a little <em >fun</em> with <strong>C</strong>!!! This is because we are <em >going</em> to be using the windows api to do some fun stuff. Let's get <em >started</em>.
             <p>
-                First thing we are <em style="color: #e3a1a1;">going</em> to have to do when opening a C file is just get our <em style="color: #e3a1a1;">headers</em> out of the way. We are going to add some <em style="color: #e3a1a1;">standard</em> headers like stdio.h which is our regular input/output <em style="color: #e3a1a1;">header</em> and let's not forget our windows.h which is going to <em style="color: #e3a1a1;">allow</em> us to interact with the windows <em style="color: #e3a1a1;">api</em>.
+                First thing we are <em >going</em> to have to do when opening a C file is just get our <em >headers</em> out of the way. We are going to add some <em >standard</em> headers like stdio.h which is our regular input/output <em >header</em> and let's not forget our windows.h which is going to <em >allow</em> us to interact with the windows <em >api</em>.
 
                 <pre>
                     <code class="hljs language-c">
@@ -56,7 +56,7 @@
                     </code>
                 </pre>
             <p>
-                Alrighty we are <em style="color: #e3a1a1;">done</em>!...jk let's continue. After our headers we are <em style="color: #e3a1a1;">going</em> to need our main function and <em style="color: #e3a1a1;">begin</em> to add some variables to it. We define <em style="color: #e3a1a1;">hProcess</em> to have a type of <em style="color: #e3a1a1;">HANDLE</em>.
+                Alrighty we are <em >done</em>!...jk let's continue. After our headers we are <em >going</em> to need our main function and <em >begin</em> to add some variables to it. We define <em >hProcess</em> to have a type of <em >HANDLE</em>.
                 <pre>
                     <code class="hljs language-c">
     #include&nbsp;&lt;stdio.h&gt;&nbsp;
@@ -70,9 +70,9 @@
                     </code>
                 </pre>
             <p>
-                Keep in mind that a <em style="color: #e3a1a1;">HANDLE</em> type is a resource that is used when an <em style="color: #e3a1a1;">application</em> references blocks of memory that are managed by a <em style="color: #e3a1a1;">remote</em> system. In our example we are going to use it to <em style="color: #e3a1a1;">store</em> the remote process's handle. I know it <em style="color: #e3a1a1;">sounds</em> a litte confusing right now but let's <em style="color: #e3a1a1;">move</em> forward so it makes a bit more <em style="color: #e3a1a1;">sense</em>.
+                Keep in mind that a <em >HANDLE</em> type is a resource that is used when an <em >application</em> references blocks of memory that are managed by a <em >remote</em> system. In our example we are going to use it to <em >store</em> the remote process's handle. I know it <em >sounds</em> a litte confusing right now but let's <em >move</em> forward so it makes a bit more <em >sense</em>.
             <p>
-                We need to set hProcess to Microsoft's <em style="color: #e3a1a1;">OpenProcess</em> function. Let's take a moment of <em style="color: #e3a1a1;">silence</em> for how beautiful Microsoft's documentation is because we can see <em style="color: #e3a1a1;">exactly</em> what parameters these functions take. For example <em style="color: #e3a1a1;">OpenProcesss</em> takes the following:
+                We need to set hProcess to Microsoft's <em >OpenProcess</em> function. Let's take a moment of <em >silence</em> for how beautiful Microsoft's documentation is because we can see <em >exactly</em> what parameters these functions take. For example <em >OpenProcesss</em> takes the following:
                 <pre>
                     <code class="hljs language-c">
     HANDLE&nbsp;OpenProcess(
@@ -83,9 +83,9 @@
                     </code>
                 </pre>
             <p>
-                And yes visual studio is <em style="color: #e3a1a1;">going</em> to let us know the same thing but the <em style="color: #e3a1a1;">documentation</em> allows us to read into detail what each <em style="color: #e3a1a1;">parameter</em> is and is used for. You can check out the documentation <a href="https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-openprocess" style="color:aquamarine">here</a> if you want to see what I am <em style="color: #e3a1a1;">going</em> to be referring to.
+                And yes visual studio is <em >going</em> to let us know the same thing but the <em >documentation</em> allows us to read into detail what each <em >parameter</em> is and is used for. You can check out the documentation <a href="https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-openprocess" style="color:aquamarine">here</a> if you want to see what I am <em >going</em> to be referring to.
             <p>
-                I'm not going to get into super <em style="color: #e3a1a1;">heavy</em> details on every function, please <em style="color: #e3a1a1;">refer</em> to the documentation if you have more questions. First <em style="color: #e3a1a1;">we</em> are going to run is PROCESS_ALL_ACCESS followed with <em style="color: #e3a1a1;">TRUE</em> as the second parameter is a bool value and the third <em style="color: #e3a1a1;">we</em> are actually going to set it to X for now as a <em style="color: #e3a1a1;">filler</em> but we will change that to the actual ProcessId later on. We <em style="color: #e3a1a1;">also</em> are going to set a variable "exec_mem" to the VirtualAllocEx() <em style="color: #e3a1a1;">function</em>, you can reference that <a href="https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualallocex" style="color:aquamarine">here</a>.
+                I'm not going to get into super <em >heavy</em> details on every function, please <em >refer</em> to the documentation if you have more questions. First <em >we</em> are going to run is PROCESS_ALL_ACCESS followed with <em >TRUE</em> as the second parameter is a bool value and the third <em >we</em> are actually going to set it to X for now as a <em >filler</em> but we will change that to the actual ProcessId later on. We <em >also</em> are going to set a variable "exec_mem" to the VirtualAllocEx() <em >function</em>, you can reference that <a href="https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualallocex" style="color:aquamarine">here</a>.
 
 
 
@@ -94,7 +94,7 @@
                     <img src="assets\" alt="">
                 </div>
             
-                <em style="color: #e3a1a1;">computer</em>
+                <em >computer</em>
 
 
 

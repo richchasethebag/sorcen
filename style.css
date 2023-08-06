@@ -7,6 +7,9 @@ body {
   font-family: 'Space Mono', monospace;
 }
 
+em{
+  color: #e3a1a1;
+}
 
 .logo {
   display: flex;
