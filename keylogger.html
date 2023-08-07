@@ -42,10 +42,10 @@
         <hr/>
         <div class="post-content e-content">
             <p>
-                Keyloggers are very interesting because they can allow for very informative actions such as feedback for software development or maybe your IT department wants to collect some user data to help them resolve an issue they are having with the computer systems. Now comes the issue of immoral actors -  <em >Boooo...you suck</em> - anyway, there is no point in hiding the fact that these people exist, soooooo <em >lets make a keylogger</em>. Keyloggers are extremely easy to create (<em >that is scary</em>)
-                so lets use some python to see <em >how it works</em>.
+                Keyloggers are very interesting because they can allow for very informative actions such as feedback for software development or maybe your IT department wants to collect some user data to help them resolve an issue they are having with the computer systems. Now comes the issue of immoral actors -  Boooo...you suck - anyway, there is no point in hiding the fact that these people exist, soooooo lets make a keylogger. Keyloggers are extremely easy to create (that is scary)
+                so lets use some python to see how it works.
                 <p>
-                    First thing we are going to do is import a python library <em >pynput</em> which is going to help us collect input from your keyboard. If the main method is ready to fire lets do something like set up a listener that takes an <em >on_press</em> parameter which in this case is <em >keyPressed</em>
+                    First thing we are going to do is import a python library pynput which is going to help us collect input from your keyboard. If the main method is ready to fire lets do something like set up a listener that takes an on_press parameter which in this case is keyPressed
                     .
                 <pre>
                     <code class="language-python">
@@ -56,7 +56,7 @@
                     </code>
                 </pre>
                 <p>
-                    Once we got that part done we can tell <em >listener</em> to start and at the same time we can tell python that we are ready to collect some <em >data</em> from the keyboard... <em >muahahahah</em>
+                    Once we got that part done we can tell listener to start and at the same time we can tell python that we are ready to collect some data from the keyboard... muahahahah
                 <pre>
                     <code class="language-python">
     from&nbsp;pynput&nbsp;import&nbsp;keyboard
@@ -68,7 +68,7 @@
                     </code>
                 </pre>
                 <p>
-                    <em >OKAY</em>.... now that we got it started lets define the <em >keyPressed</em> function otherwise <em >on_press</em> won't be able to do anything lol. So <em >keyPressed</em> is going to have a parameter of <em >key</em>. Do not be alarmed just believe me when I say that <em >on_press</em> will know what to do with it. While we are here lets print out the <em >key</em> parameter and wrap that as a <em >string</em> to make sure we can see the text as a string type.
+                    OKAY.... now that we got it started lets define the keyPressed function otherwise on_press won't be able to do anything lol. So keyPressed is going to have a parameter of key. Do not be alarmed just believe me when I say that on_press will know what to do with it. While we are here lets print out the key parameter and wrap that as a string to make sure we can see the text as a string type.
                 <pre>
                     <code class="language-python">
     from&nbsp;pynput&nbsp;import&nbsp;keyboard
@@ -83,9 +83,9 @@
                     </code>
                 </pre>
                 <p>
-                    Where are we going to store these <em >recorded key</em> events you ask? We need to store it in a .txt file so we can refer back to it later so <em >let's do it</em>
+                    Where are we going to store these recorded key events you ask? We need to store it in a .txt file so we can refer back to it later so let's do it
                 <p>
-                    Python has a cool feature called <em >with</em>. This will allow us to edit a .txt file real easy. So the syntax is going to  look something like this.
+                    Python has a cool feature called with. This will allow us to edit a .txt file real easy. So the syntax is going to  look something like this.
                 <pre>
                     <code class="language-python">
     from&nbsp;pynput&nbsp;import&nbsp;keyboard
@@ -101,13 +101,13 @@
                     </code>
                 </pre>
                 <p>
-                    Let me explain this a little before we move on just to make sure we fully understand whats <em >happening</em> here.
+                    Let me explain this a little before we move on just to make sure we fully understand whats happening here.
                 <p>
-                    We use <em >with</em> to open a .txt file name <em >keyfile</em>. It will check if this .txt exists and if not, it will be <em >created</em>. We pass a second parameter <em >'a'</em> which is just going to append any data that is captured instead of overwriting it. This way I can see <em >everything</em> you do...<em >muahahaha</em>. Also we just going to name this logKey so we can <em >reference</em> back to it later.
+                    We use with to open a .txt file name keyfile. It will check if this .txt exists and if not, it will be created. We pass a second parameter 'a' which is just going to append any data that is captured instead of overwriting it. This way I can see everything you do...muahahaha. Also we just going to name this logKey so we can reference back to it later.
                 <p>
-                    Let's add a <em >try/except</em> block here. We are going to try to <em >convert</em> this key to a character that way it can go into our .txt file. So we set the key to a <em >char</em> and write that to <em >logKey</em>. See where we are going with this?
+                    Let's add a try/except block here. We are going to try to convert this key to a character that way it can go into our .txt file. So we set the key to a char and write that to logKey. See where we are going with this?
                 <p>
-                    Reason why we use a <em >try/except</em> block is because this won't always work so if something <em >explodes</em> along the way, lets log that to the terminal.
+                    Reason why we use a try/except block is because this won't always work so if something explodes along the way, lets log that to the terminal.
                 <pre>
                     <code class="language-python">
     from&nbsp;pynput&nbsp;import&nbsp;keyboard
@@ -128,44 +128,44 @@
                     </code>
                 </pre> 
                 <p>
-                    Wait...we're done? It was that simple? Well<em > kinda</em>. The main functionality of the script is <em >done</em> yes. But we have a small issue. Any decent <em >anti-virus</em> should be able to detect this and attempt to quarantine it. So let's teach you how to add an exclusion to your windows machine! <em >EDUCATION PURPOSES ONLY</em>.
+                    Wait...we're done? It was that simple? Well kinda. The main functionality of the script is done yes. But we have a small issue. Any decent anti-virus should be able to detect this and attempt to quarantine it. So let's teach you how to add an exclusion to your windows machine! EDUCATION PURPOSES ONLY.
                 <p>
-                    Head to your windows settings then go to <em >Update & Security</em> >>> <em >Windows Security</em> >>> <em >Virus & threat protection</em>. Once you're there selected <em >Manage settings</em> and then under <em >Exclusions</em> select <em >Add or remove exclusions</em>. BOOM! you can now add your keylogger directory to the exclusion list.
+                    Head to your windows settings then go to Update & Security >>> Windows Security >>> Virus & threat protection. Once you're there selected Manage settings and then under Exclusions select Add or remove exclusions. BOOM! you can now add your keylogger directory to the exclusion list.
                 <p>
-                    Now that we have that done let's see what happens when we <em >run</em> the script.
+                    Now that we have that done let's see what happens when we run the script.
                 <div class="video-container">
                     <video src="assets/keyloggerscript.mp4" controls muted>
                     </video>
                 </div>
                 <p>
-                    You'll notice that once the script <em >starts</em> it will begin to detect <em >every</em> key that is pressed on the keyboard...<em >yikes</em>. Check out what the keyfile.txt looks like after it has <em >recorded</em> key strokes from the user. 
+                    You'll notice that once the script starts it will begin to detect every key that is pressed on the keyboard...yikes. Check out what the keyfile.txt looks like after it has recorded key strokes from the user. 
                 <div class="logger-container">
                     <img src="assets/keyloggerfile.PNG" alt="">
                 </div>
 
                 <p>
-                    It recorded <em >everything</em> I typed onto the keyboard. And if you are wondering if this would <em >work</em> in the background...welllll <em >YES</em> it will. This means some bad actor with <em >nefarious</em> intentions could run a .exe on your computer in the background <em >AND</em> record all of your keystrokes. What can someone do with your <em >keystrokes</em> you may ask? Well let me give you a prime <em >example</em>. 
+                    It recorded everything I typed onto the keyboard. And if you are wondering if this would work in the background...welllll YES it will. This means some bad actor with nefarious intentions could run a .exe on your computer in the background AND record all of your keystrokes. What can someone do with your keystrokes you may ask? Well let me give you a prime example. 
                 <p>
-                    Say you came home from <em >work</em> one day and decide to hop on your <em >computer</em> to check some emails and maybe go on <em >facebook</em>. You go to your email and you see <em >this</em>.
+                    Say you came home from work one day and decide to hop on your computer to check some emails and maybe go on facebook. You go to your email and you see this.
                 <div class="logger-container">
                     <img src="assets/phishingexample.png" alt="">
                 </div>
                 <p>
-                    Naturally this doesn't look like anything since <em >nobody</em> would want to attack you right? <em >WRONG</em>. Now that you didn't bother to take <em >precaution</em> you clicked on the link and it <em >redirected</em> you to google. You tell yourself "<em >huh, that was weird, oh well</em>". Little do you know you just downloaded a <em >KEYLOGGER</em> and you have no idea because the script is running in the <em >background</em>.
+                    Naturally this doesn't look like anything since nobody would want to attack you right? WRONG. Now that you didn't bother to take precaution you clicked on the link and it redirected you to google. You tell yourself "huh, that was weird, oh well". Little do you know you just downloaded a KEYLOGGER and you have no idea because the script is running in the background.
                 <p>
-                    You ignore that anything <em >happened</em> because on your screen you do not see anything <em >weird</em>, so you go about your day. You visit <em >facebook</em>, check more <em >emails</em> and maybe send out an <em >email</em>, you go to check your <em >bank account</em> because you want to make some <em >payments</em> to you credit card. After doing all of this lets go ahead and <em >check</em> that keyfile.txt one more time.
+                    You ignore that anything happened because on your screen you do not see anything weird, so you go about your day. You visit facebook, check more emails and maybe send out an email, you go to check your bank account because you want to make some payments to you credit card. After doing all of this lets go ahead and check that keyfile.txt one more time.
                 <div class="logger-container">
                     <img src="assets/newkeyfile.PNG" alt="">
                 </div>
                 <p>
-                    Let's break it down so its <em >easier</em> to see.
+                    Let's break it down so its easier to see.
                 <div class="logger-container">
                     <img src="assets\newkeyfile1.png" alt="">
                 </div>
                 <p>
-                    Your <em >harmless</em> tasks that were done on your computer is now logged into a separate .txt file that a <em >bad</em> actor can use at their own will. Your <em >facebook</em> credentials are <strong>exposed</strong>, your <em >email</em> credentials are <strong>exposed</strong>, your <em >confidential</em> email you wrote to a collegue is <strong>exposed</strong>, and your <em >bank</em> credentials are <strong>exposed</strong>. All because you clicked a "<em >harmless</em>" link.
+                    Your harmless tasks that were done on your computer is now logged into a separate .txt file that a bad actor can use at their own will. Your facebook credentials are <strong>exposed</strong>, your email credentials are <strong>exposed</strong>, your confidential email you wrote to a collegue is <strong>exposed</strong>, and your bank credentials are <strong>exposed</strong>. All because you clicked a "harmless" link.
                 <p>
-                    Now in reality this probably wouldn't work out as <em >smoothly</em> as I explained as majority of windows machines will <em >block</em> the script if it is run as an executable. But there are<em >1000</em> ways to bypass <em >anti-virus</em> defenders, but hey like I said this was just a <em >simple</em> keylogger.
+                    Now in reality this probably wouldn't work out as smoothly as I explained as majority of windows machines will block the script if it is run as an executable. But there are1000 ways to bypass anti-virus defenders, but hey like I said this was just a simple keylogger.
 
         </div>
     </article>

@@ -43,11 +43,11 @@
         <hr/>
         <div class="post-content e-content">
             <p>
-                This is going to be a <em >fun</em> one...trust me. It might take a little bit to get through <em >everything</em> but I promise it's pretty <em >interesting</em> once we get it going. Today we are going to be, in a very <em >blunt</em> explanation, injecting shellcode inside of a <em >remote</em> process. This is going to allow us to have <strong>FULL</strong> access to the <em >victims</em> computer (an educational victim).
+                This is going to be a fun one...trust me. It might take a little bit to get through everything but I promise it's pretty interesting once we get it going. Today we are going to be, in a very blunt explanation, injecting shellcode inside of a remote process. This is going to allow us to have <strong>FULL</strong> access to the victims computer (an educational victim).
             <p>
-                I <em >know</em> usually we write our programs in <em >python</em> but today we are going to have a little <em >fun</em> with <strong>C</strong>!!! This is because we are <em >going</em> to be using the windows api to do some fun stuff. Let's get <em >started</em>.
+                I know usually we write our programs in python but today we are going to have a little fun with <strong>C</strong>!!! This is because we are going to be using the windows api to do some fun stuff. Let's get started.
             <p>
-                First thing we are <em >going</em> to have to do when opening a C file is just get our <em >headers</em> out of the way. We are going to add some <em >standard</em> headers like stdio.h which is our regular input/output <em >header</em> and let's not forget our windows.h which is going to <em >allow</em> us to interact with the windows <em >api</em>.
+                First thing we are going to have to do when opening a C file is just get our headers out of the way. We are going to add some standard headers like stdio.h which is our regular input/output header and let's not forget our windows.h which is going to allow us to interact with the windows api.
 
                 <pre>
                     <code class="hljs language-c">
@@ -56,7 +56,7 @@
                     </code>
                 </pre>
             <p>
-                Alrighty we are <em >done</em>!...jk let's continue. After our headers we are <em >going</em> to need our main function and <em >begin</em> to add some variables to it. We define <em >hProcess</em> to have a type of <em >HANDLE</em>.
+                Alrighty we are done!...jk let's continue. After our headers we are going to need our main function and begin to add some variables to it. We define hProcess to have a type of HANDLE.
                 <pre>
                     <code class="hljs language-c">
     #include&nbsp;&lt;stdio.h&gt;&nbsp;
@@ -70,9 +70,9 @@
                     </code>
                 </pre>
             <p>
-                Keep in mind that a <em >HANDLE</em> type is a resource that is used when an <em >application</em> references blocks of memory that are managed by a <em >remote</em> system. In our example we are going to use it to <em >store</em> the remote process's handle. I know it <em >sounds</em> a litte confusing right now but let's <em >move</em> forward so it makes a bit more <em >sense</em>.
+                Keep in mind that a HANDLE type is a resource that is used when an application references blocks of memory that are managed by a remote system. In our example we are going to use it to store the remote process's handle. I know it sounds a litte confusing right now but let's move forward so it makes a bit more sense.
             <p>
-                We need to set hProcess to Microsoft's <em >OpenProcess</em> function. Let's take a moment of <em >silence</em> for how beautiful Microsoft's documentation is because we can see <em >exactly</em> what parameters these functions take. For example <em >OpenProcesss</em> takes the following:
+                We need to set hProcess to Microsoft's OpenProcess function. Let's take a moment of silence for how beautiful Microsoft's documentation is because we can see exactly what parameters these functions take. For example OpenProcesss takes the following:
                 <pre>
                     <code class="hljs language-c">
     HANDLE&nbsp;OpenProcess(
@@ -83,9 +83,9 @@
                     </code>
                 </pre>
             <p>
-                And yes visual studio is <em >going</em> to let us know the same thing but the <em >documentation</em> allows us to read into detail what each <em >parameter</em> is and is used for. You can check out the documentation <a href="https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-openprocess" style="color:aquamarine">here</a> if you want to see what I am <em >going</em> to be referring to.
+                And yes visual studio is going to let us know the same thing but the documentation allows us to read into detail what each parameter is and is used for. You can check out the documentation <a href="https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-openprocess" style="color:aquamarine">here</a> if you want to see what I am going to be referring to.
             <p>
-                I'm not going to get into super <em >heavy</em> details on every function, please <em >refer</em> to the documentation if you have more questions. First <em >we</em> are going to run is PROCESS_ALL_ACCESS followed with <em >TRUE</em> as the second parameter is a bool value and the third <em >we</em> are actually going to set it to X for now as a <em >filler</em> but we will change that to the actual ProcessId later on. We <em >also</em> are going to set a variable "exec_mem" to the VirtualAllocEx() <em >function</em>, you can reference that <a href="https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualallocex" style="color:aquamarine">here</a>.
+                I'm not going to get into super heavy details on every function, please refer to the documentation if you have more questions. First we are going to run is PROCESS_ALL_ACCESS followed with TRUE as the second parameter is a bool value and the third we are actually going to set it to X for now as a filler but we will change that to the actual ProcessId later on. We also are going to set a variable "exec_mem" to the VirtualAllocEx() function, you can reference that <a href="https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualallocex" style="color:aquamarine">here</a>.
 
 
 
@@ -94,7 +94,7 @@
                     <img src="assets\" alt="">
                 </div>
             
-                <em >computer</em>
+                computer
 
 
 

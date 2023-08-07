@@ -42,18 +42,18 @@
         <hr/>
         <div class="post-content e-content">
                 <p>
-                    What <em >happens</em> when you are using the <em >internet</em>? Well in a nutshell you are <em >constantly</em> in a state of sending and receiving <em >data</em> to the web servers. This is what <em >allows</em> you to communicate with the browser to <em >click</em> on things or send messages. The <em >issue</em> here is that these "<em >data packets</em>" are literally sent across your <em >network</em> to the receiving servers. With that being said <em >what</em> would happen if someone wanted to know <em >exactly</em> what you were doing on your <em >computer</em>? What if they were able to look at your <em >data</em> packets as you are <em >sending/receiving</em> them? Well...this is something called a <em >packet sniffer</em> attack or a "<em >man in the middle</em>" attack. It's actually pretty <em >interesting</em>, let's dive in.
+                    What happens when you are using the internet? Well in a nutshell you are constantly in a state of sending and receiving data to the web servers. This is what allows you to communicate with the browser to click on things or send messages. The issue here is that these "data packets" are literally sent across your network to the receiving servers. With that being said what would happen if someone wanted to know exactly what you were doing on your computer? What if they were able to look at your data packets as you are sending/receiving them? Well...this is something called a packet sniffer attack or a "man in the middle" attack. It's actually pretty interesting, let's dive in.
                 <p>
-                    Today's meal will consist of <em >ARP poisoning/spoofing</em> with a side of packet <em >sniffing</em>. There are a few <em >programs</em> that we are going to be using that we haven't <em >touched</em> on before. One being <em >wireshark</em> which is going to allow us to <em >capture</em> packets from a network and read through them. We will also be using <em >ettercap</em> to be like a robin to our <em >wireshark</em>-batman, it will help us out in <em >supporting</em> our "man in the middle" attack.
+                    Today's meal will consist of ARP poisoning/spoofing with a side of packet sniffing. There are a few programs that we are going to be using that we haven't touched on before. One being wireshark which is going to allow us to capture packets from a network and read through them. We will also be using ettercap to be like a robin to our wireshark-batman, it will help us out in supporting our "man in the middle" attack.
                 <p>
-                    Before we continue I should probably <em >explain</em> a little more on how this <em >works</em> with a few visuals to make it more <em >simple</em> to understand. 
+                    Before we continue I should probably explain a little more on how this works with a few visuals to make it more simple to understand. 
                 <div class="logger-container">
                     <img src="assets/arpdiagram.png" alt="">
                 </div>
                 <p>
-                    You can see from the <em >diagram</em> above that the main idea of the <em >ARP poisoning/spoofing</em> gets across pretty simply. We are going to use <em >simple</em> terms to make sure everyone can keep <em >track</em> of what we are talking about. Your <em >gateway</em> (router/modem/switch) is how you are able to <em >communicate</em> with the internet. Whenever you are attempting to <em >access</em> some site on the internet you are making a <em >request</em> to access the site. You send a "<em >request</em>" to your gateway (router/modem/switch) to <em >ask</em> the site if you can access it. The site then <em>responds</em> back to the gateway and will either say <em>yes/no</em>. Then your <em>gateway</em> will send you back the <em>response</em> that the site gave.
+                    You can see from the diagram above that the main idea of the ARP poisoning/spoofing gets across pretty simply. We are going to use simple terms to make sure everyone can keep track of what we are talking about. Your gateway (router/modem/switch) is how you are able to communicate with the internet. Whenever you are attempting to access some site on the internet you are making a request to access the site. You send a "request" to your gateway (router/modem/switch) to ask the site if you can access it. The site then responds back to the gateway and will either say yes/no. Then your gateway will send you back the response that the site gave.
                 <p>
-                    Here is where the "<em>man in the middle</em>" comes from. As you can see from the <em>diagram</em> the bad actor can use a program like <em>wireshark</em> and ettercap to see those requests that you are sending to your gateway and equally see what your access point is sending back to you...privacy just went right out the window. So you're saying that a hacker can see everything that im doi...<strong>YES</strong>
+                    Here is where the "man in the middle" comes from. As you can see from the diagram the bad actor can use a program like wireshark and ettercap to see those requests that you are sending to your gateway and equally see what your access point is sending back to you...privacy just went right out the window. So you're saying that a hacker can see everything that im doi...<strong>YES</strong>
                 <p>
                     Let's crack open ETTERCAP!
                 <div class="logger-container">
@@ -61,7 +61,7 @@
                 </div>
 
                 <p>
-                    Nice we got ettercap running so the first thing ettercap needs is going to be the 2 targets that the ARP poisoning shall attack...soooo let's do that. For demonstration purposes we are going to have ettercap send out a bunch of ARP scanning on the local subnet so we could easily find our hosts that we are going to connect to. In a production environment running a real pen test you probably would not want to notify the entire network that you are sending ARP scans, but like I said this is for demo purposes! 
+                    Nice we got ettercap running so the first thing ettercap needs is going to be the 2 targets that the ARP poisoning shall attack...soooo let's do that. For demonstration purposes we are going to have ettercap send out a bunch of ARP scanning on the local subnet so we could easily find our hosts that we are going to connect to. In a production environment running a real penatration test you probably would not want to notify the entire network that you are sending ARP scans, but like I said this is for demo purposes! 
                 <p>
                     Ettercap was able to find 3 hosts on our network so let's set the 2 targets.
 
@@ -82,7 +82,7 @@
                     WOAAAA. Wireshark is able to see exactly what my windows machine is pinging! This is awesome (and kinda scary). We don't have to worry too much as all of this is TLS encrypted so an attacker would need to go through a few more steps to get the plaintext, but the good news is we were able to give a good example of how a ARP poisoning attack would work. Maybe next time we can take it a step further to decrypt the packets!
 
                 <p>
-                    <em>P.S. The following are protocols that are affected by packet sniffing attacks and can be viewed in plaintext with no decryption HTTP,SMTP,NNTP,POP,FTP,INAO,TELNET, alright cya next time.</em>
+                    P.S. The following are protocols that are affected by packet sniffing attacks and can be viewed in plaintext with no decryption HTTP,SMTP,NNTP,POP,FTP,INAO,TELNET, alright cya next time.
         </div>
     </article>
 <hr/>
